@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "name": "HeritageHub",
+    "slug": "heritagehub",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "backgroundColor": "#FAF6EE",
+    "ios": { "supportsTablet": false, "bundleIdentifier": "app.heritagehub.mobile", "infoPlist": { "NSCameraUsageDescription": "HeritageHub uses the camera to scan visitor QR tickets." } },
+    "android": { "package": "app.heritagehub.mobile", "permissions": ["CAMERA"] },
+    "plugins": ["expo-secure-store", ["expo-camera", { "cameraPermission": "Allow HeritageHub to use the camera to scan visitor QR tickets." }]]
+  }
+}

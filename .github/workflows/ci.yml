@@ -1,0 +1,45 @@
+# Runs lint, types, unit + integration tests, the end-to-end suite and the accessibility scan against a real MongoDB.
+name: CI
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      mongo:
+        image: mongo:7
+        ports: ["27017:27017"]
+    env:
+      MONGODB_URI: mongodb://localhost:27017/heritagehub
+      MONGODB_URI_TEST: mongodb://localhost:27017/heritagehub_test
+      AUTH_SECRET: ci-secret
+      TICKET_SECRET: ci-ticket
+      DEMO_RELAX_SLOT_CHECK: "true"
+      NOTIFY_DISABLED: "true"
+      APP_URL: http://localhost:3000
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: npm }
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run test:integration
+      - run: npm run test:concurrency   # needs real MongoDB atomicity; aborts on databases that lose updates
+      - run: npm run seed
+      - run: npm run build
+      - run: |
+          npx next start -p 3000 &
+          for i in $(seq 1 30); do curl -sf localhost:3000/api/health && break || sleep 2; done
+          npm run test:e2e
+          npm run test:a11y
+  mobile:
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: mobile } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: npm install
+      - run: npm run typecheck
+      - run: CI=1 npx expo export --platform android --output-dir /tmp/dist
