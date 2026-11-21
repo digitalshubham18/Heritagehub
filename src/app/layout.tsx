@@ -8,10 +8,72 @@ const display = localFont({ src: "../../node_modules/@fontsource-variable/fraunc
 const body = localFont({ src: "../../node_modules/@fontsource-variable/figtree/files/figtree-latin-wght-normal.woff2", variable: "--font-body", weight: "300 900", display: "swap" });
 const hindi = localFont({ src: "../../node_modules/@fontsource-variable/noto-sans-devanagari/files/noto-sans-devanagari-devanagari-wght-normal.woff2", variable: "--font-hi", weight: "100 900", display: "swap" });
 
+
 export const metadata: Metadata = {
-  title: { default: "HeritageHub: heritage site tickets and crowd forecasts", template: "%s | HeritageHub" },
-  description: "Book timed tickets for India's heritage sites and see how busy each hour is expected to be.",
+  metadataBase: new URL("https://heritagehub-vert.vercel.app"),
+
+  title: {
+    default: "HeritageHub | Discover India's Heritage Sites",
+    template: "%s | HeritageHub",
+  },
+
+  description:
+    "Explore India's historical monuments and cultural heritage sites. Discover destinations, check expected visitor crowds, and plan your visit with HeritageHub.",
+
+  applicationName: "HeritageHub",
+
+  keywords: [
+    "HeritageHub",
+    "Indian heritage sites",
+    "historical monuments in India",
+    "Indian tourism",
+    "heritage tourism",
+    "historical places in India",
+    "monument tickets",
+    "heritage site crowd forecast",
+    "travel planning India",
+  ],
+
+  authors: [{ name: "HeritageHub" }],
+  creator: "HeritageHub",
+  publisher: "HeritageHub",
+
+  category: "travel",
+
+  openGraph: {
+    type: "website",
+    url: "https://heritagehub-vert.vercel.app",
+    siteName: "HeritageHub",
+    title: "HeritageHub | Discover India's Heritage Sites",
+    description:
+      "Discover India's heritage destinations, explore historical monuments, check expected crowds, and plan your visit.",
+    locale: "en_IN",
+  },
+
+  twitter: {
+    card: "summary",
+    title: "HeritageHub | Discover India's Heritage Sites",
+    description:
+      "Explore India's heritage sites, check expected crowds, and plan your next visit.",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+
+  formatDetection: {
+    telephone: false,
+  },
 };
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${display.variable} ${body.variable} ${hindi.variable}`}>

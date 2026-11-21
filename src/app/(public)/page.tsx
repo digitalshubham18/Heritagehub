@@ -49,6 +49,34 @@ export default function Landing() {
 
   return (
     <>
+
+      {/* Google SEO: Website and Organization structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "@id": "https://heritagehub-vert.vercel.app/#website",
+              "name": "HeritageHub",
+              "alternateName": "heritagehub",
+              "url": "https://heritagehub-vert.vercel.app/",
+              "description":
+                "Discover India's historical monuments and cultural heritage sites, explore destinations, check expected crowds, and plan your visit."
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "@id": "https://heritagehub-vert.vercel.app/#organization",
+              "name": "HeritageHub",
+              "alternateName": "heritagehub",
+              "url": "https://heritagehub-vert.vercel.app/"
+            }
+          ]).replace(/</g, "\\u003c")
+        }}
+      />
+
       {/* ---------- Hero ---------- */}
       <section className="relative overflow-hidden border-b border-forest/10 bg-ivory-100">
         <div className="bg-jali absolute inset-0 [mask-image:linear-gradient(to_bottom,black,transparent_85%)]" aria-hidden />

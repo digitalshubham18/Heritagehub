@@ -22,8 +22,16 @@ function Login() {
     } catch (e: any) { setErr(e.message); setBusy(false); }
   }
   return (
-    <AuthShell title="Welcome back" subtitle="Sign in to see your tickets, bookings and passes." footer={<p>New here? <AuthLink href="/register">Create an account</AuthLink></p>}>
-      <form onSubmit={go} className="space-y-4" noValidate>
+<AuthShell
+  title="Welcome back"
+  subtitle="Sign in to see your tickets, bookings and passes."
+  slideshow
+  footer={
+    <p>
+      New here? <AuthLink href="/register">Create an account</AuthLink>
+    </p>
+  }
+>      <form onSubmit={go} className="space-y-4" noValidate>
         {err && <p role="alert" className="rounded-lg bg-red-50 p-3 text-sm text-red-800">{err}</p>}
         <Field label="Email"><Input type="email" autoComplete="email" value={v.email} onChange={(e) => setV({ ...v, email: e.target.value })} required /></Field>
         <Field label="Password"><PasswordInput autoComplete="current-password" value={v.password} onChange={(e) => setV({ ...v, password: e.target.value })} required /></Field>
