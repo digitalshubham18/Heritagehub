@@ -16,9 +16,13 @@ export const metadata: Metadata = {
     default: "HeritageHub | Discover India's Heritage Sites",
     template: "%s | HeritageHub",
   },
+ 
 
   description:
     "Explore India's historical monuments and cultural heritage sites. Discover destinations, check expected visitor crowds, and plan your visit with HeritageHub.",
+     verification: {
+  google: "reNdUHKOJPLRYNj4qZgRcqJixuznSAkI3KpprSEcanQ",
+},
 
   applicationName: "HeritageHub",
 
