@@ -30,7 +30,8 @@ function Login() {
         <Button type="submit" size="lg" className="w-full" loading={busy}>Sign in</Button>
         <p className="text-center text-sm"><AuthLink href="/forgot-password">Forgot your password?</AuthLink></p>
       </form>
-      <details className="mt-6 rounded-xl bg-ivory-100 p-3 text-xs text-ink/70"><summary className="cursor-pointer font-medium">Demo accounts (after seeding)</summary><ul className="mt-2 space-y-0.5 font-mono"><li>admin@heritagehub.test / Admin@123</li><li>operator1@heritagehub.test / Operator@123</li><li>staff@heritagehub.test / Staff@123</li><li>tourist@heritagehub.test / Tourist@123</li></ul></details>
+      {/* <details className="mt-6 rounded-xl bg-ivory-100 p-3 text-xs text-ink/70"> */}
+      {/* <summary className="cursor-pointer font-medium">Demo accounts (after seeding)</summary><ul className="mt-2 space-y-0.5 font-mono"><li>admin@heritagehub.test / Admin@123</li><li>operator1@heritagehub.test / Operator@123</li><li>staff@heritagehub.test / Staff@123</li><li>tourist@heritagehub.test / Tourist@123</li></ul></details> */}
     </AuthShell>
   );
 }
