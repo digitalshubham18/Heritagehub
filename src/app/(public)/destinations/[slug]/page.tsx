@@ -16,6 +16,10 @@ import { Badge, Button, Card, ErrorState, Field, PageSkeleton, Select, Textarea 
 import { fmtDate, fmtTime, inr, todayIST } from "@/lib/utils";
 
 const LeafletMap = dynamic(() => import("@/components/map"), { ssr: false, loading: () => <div className="h-72 animate-pulse rounded-xl bg-forest/10" /> });
+const DigitalTwin = dynamic(
+  () => import("@/components/digital-twin").then((m) => m.DigitalTwin),
+  { ssr: false, loading: () => <div className="h-[28rem] animate-pulse rounded-3xl bg-forest/10" aria-hidden /> }
+);
 const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 export default function DestinationPage() {
@@ -72,7 +76,13 @@ export default function DestinationPage() {
           <section aria-labelledby="about"><h2 id="about" className="text-2xl">History and significance</h2><p className="mt-3 max-w-prose leading-relaxed">{x.history}</p><p className="mt-3 max-w-prose leading-relaxed">{x.significance}</p></section>
 
           <SiteNotices slug={slug} />
-          <LivePanel slug={slug} />
+<DigitalTwin
+  name={x.name}
+  seed={x.slug}
+  type={x.type}
+  liveSlug={slug}
+/>
+<LivePanel slug={slug} />
           <section aria-labelledby="crowd">
             <h2 id="crowd" className="text-2xl">Expected crowd on {fmtDate(date)}</h2>
             {s.loading ? <div className="mt-3 h-40 animate-pulse rounded-xl bg-forest/10" /> : s.data?.closed ? <p className="mt-3 rounded-lg bg-amber-50 p-3 text-amber-900">Closed on this date.</p> : (<>
